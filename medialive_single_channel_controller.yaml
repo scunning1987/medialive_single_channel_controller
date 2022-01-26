@@ -121,6 +121,79 @@ Resources:
                 - '*'
     DependsOn: S3Bucket
 
+  IAMRoleForMediaLive:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MediaLiveAccessRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - medialive.amazonaws.com
+            Action:
+              - sts:AssumeRole
+
+  MediaLiveAccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Roles:
+        - !Ref IAMRoleForMediaLive
+      PolicyName: !Sub ${AWS::StackName}-MediaLiveAccessPolicy
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:*
+            Resource:
+              - !Sub arn:aws:s3:::${S3Bucket}/*
+          - Effect: Allow
+            Action:
+              - s3:*
+            Resource:
+              - !Sub arn:aws:s3:::${S3Bucket}
+          - Effect: Allow
+            Action:
+              - mediaconnect:ManagedDescribeFlow
+              - mediaconnect:ManagedAddOutput
+              - mediaconnect:ManagedRemoveOutput
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - medialive:*
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - mediaconnect:*
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - ec2:describeSubnets
+              - ec2:describeNetworkInterfaces
+              - ec2:createNetworkInterface
+              - ec2:createNetworkInterfacePermission
+              - ec2:deleteNetworkInterface
+              - ec2:deleteNetworkInterfacePermission
+              - ec2:describeSecurityGroups
+              - ec2:describeAddresses
+              - ec2:associateAddress
+              - ec2:describeSubnets
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - iam:PassRole
+            Resource:
+              - !Sub arn:aws:iam::${AWS::AccountId}:role/*
+
   LambdaInvokePermissionAPIGateway:
     Type: AWS::Lambda::Permission
     Properties:
@@ -719,6 +792,62 @@ Resources:
       - ApiGateway
 
     #################
+    ## MediaPackage
+    #################
+
+  MediaPackageChannel:
+    Type: AWS::MediaPackage::Channel
+    Properties:
+      Description: MediaPackage Channel for MediaLive stream
+      Id: !Sub EMP_${AWS::StackName}
+
+  MediaPackageOriginEndpoint:
+    Type: AWS::MediaPackage::OriginEndpoint
+    Properties:
+      ChannelId: !Sub EMP_${AWS::StackName}
+      Id: !Sub hls_${AWS::StackName}
+      ManifestName: index
+      HlsPackage:
+        AdMarkers: SCTE35_ENHANCED
+        PlaylistWindowSeconds: 30
+        SegmentDurationSeconds: 2
+
+    #################
+    ## MediaLive
+    #################
+
+  ML1HLS:
+    Type: AWS::MediaLive::Input
+    Properties:
+      Name: !Sub hls_${AWS::StackName}
+      RoleArn: !Ref IAMRoleForMediaLive
+      Type: URL_PULL
+      Sources:
+        - Url: https://af93123e0d76e324607b5414578c69b2.p05sqb.channel-assembly.mediatailor.us-west-2.amazonaws.com/v1/channel/cunsco-1/hls.m3u8
+
+  ML1MP4L:
+    Type: AWS::MediaLive::Input
+    Properties:
+      Name: !Sub mp4l_${AWS::StackName}
+      RoleArn: !Ref IAMRoleForMediaLive
+      Type: MP4_FILE
+      Sources:
+        - Url: s3://$urlPath$
+
+  ML1MP4C:
+    Type: AWS::MediaLive::Input
+    Properties:
+      Name: !Sub mp4c_${AWS::StackName}
+      RoleArn: !Ref IAMRoleForMediaLive
+      Type: MP4_FILE
+      Sources:
+        - Url: s3://$urlPath$
+
+
+
+    # IAMRoleForMediaLive - iam
+
+    #################
     ## CloudFront
     #################
 
@@ -756,6 +885,7 @@ Resources:
           Value: !Ref AWS::StackName
     DependsOn:
       - CloudFrontOAI
+      - MediaPackageChannel
 
 #################################
 # Outputs
