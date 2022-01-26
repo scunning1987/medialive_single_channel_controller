@@ -1,0 +1,23 @@
+# CloudFormation Files to download
+
+
+https://raw.githubusercontent.com/scunning1987/
+MediaLive.png
+README.md
+channel_map.json
+demo.html
+diagram.html
+html5_architecture_demo.png
+html5_architecture_elemental_live.png
+html5_architecture_live.png
+html5_architecture_medialive.png
+html5_motion_graphics.css
+html5_motion_graphics.js
+html5_motion_graphics_image.png
+manifest.txt
+medialive-control-config.py
+medialive-control-functions.py
+medialive-sample.png
+medialive-schedule-cleanup.py
+medialive_multi_channel_controller.yaml
+preview.png

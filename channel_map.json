@@ -1,0 +1,69 @@
+{
+  "channel_map": {
+    "1": {
+      "primary_channel_id": 5189519,
+      "proxy_gen_channel": 2857564,
+      "channel_friendly_name": "Demo Channel 1",
+      "channel_region": "us-west-2",
+      "html5_graphics_url": "https://app.singular.live/output/4pQOnLon6ahTLxcfrPBPgS/Output?aspect=16:9",
+      "html5_graphics_ctrl": "https://app.singular.live/apiv1/control/6vaTFhPFFcSNxi7kMUZDCS",
+      "low_latency_url_source": "wss://d3re4i3vgppvr8.cloudfront.net/emx/20010",
+      "low_latency_url_medialive": "wss://d3re4i3vgppvr8.cloudfront.net/eml/20010",
+      "proxy_thumbnail_name":"https://d3re4i3vgppvr8.cloudfront.net/status_thumbnails/tradeshow-1b.jpg"
+    },
+    "2": {
+      "primary_channel_id": 3268257,
+      "proxy_gen_channel": 9142919,
+      "channel_friendly_name": "Demo Channel 2",
+      "channel_region": "us-west-2",
+      "html5_graphics_url": "https://app.singular.live/output/7jqqkZUadABpEiQi9Tc2z6/Output?aspect=16:9",
+      "html5_graphics_ctrl": "https://app.singular.live/apiv1/control/3qeG0GdxkxDLWotX5kpMkS",
+      "low_latency_url_source": "wss://d3re4i3vgppvr8.cloudfront.net/emx/20020",
+      "low_latency_url_medialive": "wss://d3re4i3vgppvr8.cloudfront.net/eml/20020",
+      "proxy_thumbnail_name":"https://d3re4i3vgppvr8.cloudfront.net/status_thumbnails/tradeshow-2b.jpg"
+    },
+    "3": {
+      "primary_channel_id": 93199,
+      "proxy_gen_channel": 1366089,
+      "channel_friendly_name": "Demo Channel 3",
+      "channel_region": "us-west-2",
+      "html5_graphics_url": "https://app.singular.live/output/3c3KYCyklbKy25ouZRM7XR/Output?aspect=16:9",
+      "html5_graphics_ctrl": "https://app.singular.live/apiv1/control/7qsZNEbljDnCdQz9MOzQBC",
+      "low_latency_url_source": "wss://d3re4i3vgppvr8.cloudfront.net/emx/20030",
+      "low_latency_url_medialive": "wss://d3re4i3vgppvr8.cloudfront.net/eml/20030",
+      "proxy_thumbnail_name":"https://d3re4i3vgppvr8.cloudfront.net/status_thumbnails/tradeshow-3b.jpg"
+    },
+    "4": {
+      "primary_channel_id": 2688831,
+      "proxy_gen_channel": 4034356,
+      "channel_friendly_name": "Demo Channel 4",
+      "channel_region": "us-west-2",
+      "html5_graphics_url": "https://app.singular.live/output/4BNy1PaPrCQB05tEQzXWtp/Output?aspect=16:9",
+      "html5_graphics_ctrl": "https://app.singular.live/apiv1/control/6jz5QSe61yAgAFwN9DWWvj",
+      "low_latency_url_source": "wss://d3re4i3vgppvr8.cloudfront.net/emx/20040",
+      "low_latency_url_medialive": "wss://d3re4i3vgppvr8.cloudfront.net/eml/20040",
+      "proxy_thumbnail_name":"https://d3re4i3vgppvr8.cloudfront.net/status_thumbnails/tradeshow-4b.jpg"
+    }
+  },
+  "vod_bucket":"aws-elemental-demo-2021",
+  "gfx_overlay": {
+    "1": {
+      "name": "AWS Black Logo",
+      "url": "https://d3re4i3vgppvr8.cloudfront.net/aws_projects/main/shows/gfx_overlays/AWS_logo_RGB_BLK.png"
+    },
+    "2": {
+      "name": "AWS RGB Rev",
+      "url": "https://d3re4i3vgppvr8.cloudfront.net/aws_projects/main/shows/gfx_overlays/AWS_logo_RGB_REV.png"
+    },
+    "3": {
+      "name": "AWS White Logo",
+      "url": "https://d3re4i3vgppvr8.cloudfront.net/aws_projects/main/shows/gfx_overlays/AWS_logo_RGB_WHT.png"
+    },
+    "4": {
+      "name": "AWS RGB Logo",
+      "url": "https://d3re4i3vgppvr8.cloudfront.net/aws_projects/main/shows/gfx_overlays/AWS_logo_RGB.png"
+    }
+  },
+  "bumper_bucket_region": "us-west-2",
+  "control_api_endpoint_url": "https://bkg0j197d9.execute-api.us-west-2.amazonaws.com/v1/dashboard-ctrl"
+}

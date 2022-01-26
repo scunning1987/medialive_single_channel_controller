@@ -1,0 +1,208 @@
+/**
+ * Style Sheet for HTML5 Motion Graphics
+ * Author: Scott Cunningham
+ * License: MIT
+ **/
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 90%;
+  margin-left:5%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+td{
+  text-align:center;
+}
+
+.thumbs {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  width:90%;
+  margin-left:5%;
+  background-color: #f1f1f1;
+}
+#instructions_container{
+  width:90%;
+  margin-left:5%;
+}
+#lbreak{
+  display:block;
+  position:relative;
+  float:left;
+  width:90%;
+  border-top:2px solid gray;
+  margin-left: 5%;
+  margin-top: 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+#channel_selection_container {
+  width:90%
+  margin-left: 5%;
+}
+#players_container{
+  width:90%;
+  margin-top:20px;
+  margin-left:5%;
+  position:relative;
+  display:none;
+}
+.vu-meter-wrp {
+  display:inline-block;
+  height: 315px;
+  width:40px;
+}
+.player-wrp{
+  display:inline-block;
+  position:relative;
+  height:315px;
+  width:560px;
+  background-color:gray;
+  margin:0 auto;
+}
+.player-parent-wrp{
+  width:46%;
+  text-align:center;
+  min-width:640px;
+  overflow:hidden;
+  display:inline-block;
+}
+#channel_control_wrapper{
+  margin-top:20px;
+  position:relative;
+  display:none;
+  width:90%;
+  margin-left:5%
+}
+#channel_status{
+  position:relative;
+  display:none;
+  width:90%;
+  margin-left:5%;
+  font-variant: small-caps;
+}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width:160px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  min-height:350px;
+  max-height:700px;
+  overflow-y:scroll
+}
+
+.control_buttons {
+  background-color: inherit;
+  display:inline-block;
+  width:100px;
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:20px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: 0.3s;
+  font-size: 17px;
+  border: 1px solid #ccc;
+}
+
+.control_buttons:hover {
+  background-color: #ddd;
+}
+
+.switch_containers{
+  width:500px;
+  height:220px;
+  display:inline-block;
+  float:left;
+  border-left:2px solid gray;
+  margin-top:20px;
+  padding:5px;
+  margin-left:20px;
+}
+
+.switch_description{
+  font-style: italic;
+  color:gray;
+  height:35px;
+}
+
+.pulsate {
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+    color:red;
+    padding-left:20px;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+#instructions1{
+  display:inline-block;
+}
+#instructions2{
+  display:none;
+}
+
+select,input{
+  margin-left:10px;
+}
+
+.pressedbutton{
+  background-color:green;
+}
+
+.labels{
+  width:180px;
+}

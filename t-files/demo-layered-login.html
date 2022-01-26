@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DEMO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../css/rodeo.min.css" media="screen">
+    <link rel="stylesheet" href="../../css/custom.css" media="screen">
+    <script src="../../js/jquery-3.5.1.min.js"> </script>
+    <script src="../../js/popper.min.js"> </script>
+    <script src="../../js/bootstrap.min.js"> </script>
+    <script>
+        $(document).ready(function () {
+            // SET USERNAME
+            $("#login-username").val("Rick");
+            // SET PASSWORD
+            $("#login-password").val("R0L13D");
+
+            function Clipboard_CopyTo(value) {
+                var tempInput = document.createElement("input");
+                tempInput.value = value;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+            }
+
+            document.querySelector('#copy-username').onclick = function () {
+                var username = $("#login-username").val();
+                Clipboard_CopyTo(username);
+            }
+            document.querySelector('#copy-password').onclick = function () {
+                var password = $("#login-password").val();
+                Clipboard_CopyTo(password);
+            }
+            document.querySelector('#password-hide').onclick = function () {
+                $("#password-form").hide();
+                $("#password-hide").hide();
+                $("#password-show").show();
+            }
+            document.querySelector('#password-show').onclick = function () {
+                $("#password-form").show();
+                $("#password-hide").show();
+                $("#password-show").hide();
+            }
+        });
+    </script>
+    <style>
+        .click_link {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR CODE -->
+    <div class="container-fullwidth">
+        <!-- PRIMARY NAVBAR CODE -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand brand-icon" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="form-inline pr-3" id="password-form" style="display: none;">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text click_link" id="copy-username">Username</span>
+                    </div>
+                    <input type="text" class="form-control" id="login-username" value="xXxNewbSlayerxXx">
+                </div>
+                <div class="input-group pl-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text click_link" id="copy-password">Password</span>
+                    </div>
+                    <input type="text" class="form-control" id="login-password" value="hunter2">
+                </div>
+            </form>
+            <form class="form-inline">
+                <button class="btn btn-sm btn-outline-warning" style="display: none;" type="button" id="password-hide">Hide</button>
+                <button class="btn btn-sm btn-outline-secondary"  type="button" id="password-show">Show Password</button>
+            </form>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onClick="javascript:window.close('','_parent','');"> Close Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oHg5SJYRHA0?rel=0" allowfullscreen></iframe>      </div>
+
+</html>
