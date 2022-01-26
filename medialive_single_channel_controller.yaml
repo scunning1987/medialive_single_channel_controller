@@ -17,7 +17,7 @@ Parameters:
 
   HMTL5APIKey:
     Description: API Key for the HTML5 endpoint
-    Type: Strings
+    Type: String
 
 ## Resources
 Resources:
