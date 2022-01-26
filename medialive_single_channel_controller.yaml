@@ -364,7 +364,7 @@ Resources:
               apiendpoint = os.environ['APIENDPOINT']
 
               # Manifest File containning URL's on github
-              cloudformation_manifest = "https://raw.githubusercontent.com/scunning1987/aws_projects/main/377/manifest.txt"
+              cloudformation_manifest = "https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/manifest.txt"
 
               # Get the manifest from GitHub
               get_response = http.request('GET', cloudformation_manifest)
@@ -897,7 +897,7 @@ Outputs:
   DashboardUrl:
     Description: Dashboard URL for MediaLive control
     #Value: !Sub https://${S3Bucket}.s3.${AWS::Region}.amazonaws.com/${FileMover.ui}
-    Value: !Sub https://${CloudFrontDistribution.DomainName}/${FileMover.ui}
+    Value: !Sub https://${CloudFrontDistribution.DomainName}/${FileMover.demo}
 
   APIEndpointURLGetSample:
     Description: API Endpoint for getting sample configuration, method - GET
