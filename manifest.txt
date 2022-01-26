@@ -2,6 +2,7 @@
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/MediaLive.png
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/README.md
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/channel_map.json
+https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/channel_map_template.json
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/demo.html
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/diagram.html
 https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/html5_architecture_demo.png
