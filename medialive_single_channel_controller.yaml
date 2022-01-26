@@ -811,6 +811,8 @@ Resources:
         AdMarkers: SCTE35_ENHANCED
         PlaylistWindowSeconds: 30
         SegmentDurationSeconds: 2
+    DependsOn:
+      - MediaPackageChannel
 
     #################
     ## MediaLive
