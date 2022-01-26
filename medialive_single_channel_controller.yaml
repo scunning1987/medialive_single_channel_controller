@@ -124,7 +124,7 @@ Resources:
   IAMRoleForMediaLive:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: MediaLiveAccessRole
+      RoleName: !Sub ${AWS::StackName}MediaLiveAccessRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
