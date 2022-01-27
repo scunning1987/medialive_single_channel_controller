@@ -845,7 +845,147 @@ Resources:
       Sources:
         - Url: s3://$urlPath$
 
+  MediaLiveChannelDistribution:
+    Type: 'AWS::MediaLive::Channel'
+    Properties:
+      Name: !Sub ${AWS::StackName}
+      ChannelClass: SINGLE_PIPELINE
+      InputSpecification:
+        Codec: AVC
+        MaximumBitrate: MAX_10_MBPS
+        Resolution: HD
+      LogLevel: DISABLED
+      RoleArn: !Ref IAMRoleForMediaLive
+      InputAttachments:
+        - InputId: !Ref ML1HLS
+          InputAttachmentName: MainStream
+          InputSettings:
+            SourceEndBehavior: CONTINUE
+        - InputId: !Ref ML1MP4L
+          InputAttachmentName: LoopMP4
+          InputSettings:
+            SourceEndBehavior: LOOP
+        - InputId: !Ref ML1MP4C
+          InputAttachmentName: ContinueMP4
+          InputSettings:
+            SourceEndBehavior: CONTINUE
+      Destinations:
+        - Id: emp1
+          MediaPackageSettings:
+            - ChannelId: !Sub EMP_${AWS::StackName}
+      EncoderSettings:
+        FeatureActivations:
+          InputPrepareScheduleActions: ENABLED
+        AudioDescriptions:
+          - Name: audio_0
+            AudioTypeControl: FOLLOW_INPUT
+            LanguageCodeControl: FOLLOW_INPUT
+            CodecSettings:
+              AacSettings:
+                CodingMode: CODING_MODE_2_0
+                Profile: LC
+                Bitrate: 128.0
+                SampleRate: 44.0
+        VideoDescriptions:
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: HIGH
+                Bitrate: 20000000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: INITIALIZE_FROM_SOURCE
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 2
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: INTERLACED
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: INITIALIZE_FROM_SOURCE
+                Profile: HIGH
+                RateControlMode: CBR
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: high
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: LOW
+                Bitrate: 250000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: INITIALIZE_FROM_SOURCE
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 2
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: LOW
+                NumRefFrames: 1
+                ParControl: INITIALIZE_FROM_SOURCE
+                Profile: MAIN
+                RateControlMode: CBR
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: DISABLED
+                QualityLevel: STANDARD_QUALITY
+            Height: 360
+            Name: low
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+            Width: 640
+        CaptionDescriptions: []
+        OutputGroups:
+          - Name: MediaPackageOutput
+            OutputGroupSettings:
+              MediaPackageGroupSettings:
+                Destination:
+                  DestinationRefId: emp1
+            Outputs:
+              - OutputName: high
+                VideoDescriptionName: high
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: []
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: low
+                VideoDescriptionName: low
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: [ ]
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
 
+        TimecodeConfig:
+          Source: EMBEDDED
+      Tags:
+        Bumpers: Bumpers
+    DependsOn:
+      - MediaPackageChannel
 
     # IAMRoleForMediaLive - iam
 
