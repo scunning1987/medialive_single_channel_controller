@@ -861,6 +861,10 @@ Resources:
           InputAttachmentName: MainStream
           InputSettings:
             SourceEndBehavior: CONTINUE
+            NetworkInputSettings:
+              HlsInputSettings:
+                BufferSegments: 3
+                Scte35Source: MANIFEST
         - InputId: !Ref ML1MP4L
           InputAttachmentName: LoopMP4
           InputSettings:
