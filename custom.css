@@ -1,0 +1,94 @@
+.brand-icon {
+    background: url(../img/AWS_Media_Solutions_Rodeo_r02_AWS_logo_59x32_2x.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 32px;
+    width: 59px;
+}
+@font-face {
+    font-family:AmazonEmber;
+    src:url(../fonts/AmazonEmber_W_Rg.woff2) format("woff2"),
+    url(../fonts/AmazonEmber_W_Rg.woff) format("woff");
+    font-weight:400;
+    font-style:normal
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family:'AmazonEmber',Helvetica,Arial,sans-serif !important ;
+}
+.card-sm{
+    height: 500px;
+}
+.card-md{
+    height: 540px;
+}
+.card-lg{
+    height: 650px;
+}
+.bar-sm {
+    height: 500px;
+    height: 5px;
+    padding: 0 0 0 0;
+}
+/* INTRO Specific */
+.full-width-header-index {
+    background: 
+    url(../img/AWS_Media_Solutions_Rodeo_r02_header_Index_1490x152_2x.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+/* LANDING Specific */
+.full-width-header-landing {
+    background: 
+    url(../img/AWS_Media_Solutions_Rodeo_r02_header_landing_1490x408_2x.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+/* INTRO Specific */
+.full-width-header-intro {
+    background: 
+    url(../img/AWS_Media_Solutions_Rodeo_r02_header_landing_1490x408_2x.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+#secondary-menu li .active{
+    border-bottom: 2px solid blueviolet;
+    color: blueviolet;
+}
+/* .card-md 370x200 */
+/* .card    265x200 */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+.card-sm .card-img-top{ 
+    height: 130px;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+.featured-video-image-hack {
+    height: 308px; 
+    object-fit: cover;
+}
+/* .filler {
+    color: orange !important;
+    animation: blinker 3s linear infinite;
+}
+@keyframes blinker {
+    50% {
+      opacity: 0.25;
+    }
+  } */
