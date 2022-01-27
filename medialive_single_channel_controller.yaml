@@ -896,17 +896,21 @@ Resources:
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
-                FramerateControl: INITIALIZE_FROM_SOURCE
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
                 GopBReference: DISABLED
                 GopClosedCadence: 1
-                GopSize: 2
+                GopSize: 1
                 GopSizeUnits: SECONDS
                 SubgopLength: FIXED
                 ScanType: INTERLACED
                 Level: H264_LEVEL_AUTO
                 LookAheadRateControl: MEDIUM
                 NumRefFrames: 1
-                ParControl: INITIALIZE_FROM_SOURCE
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
                 Profile: HIGH
                 RateControlMode: CBR
                 Syntax: DEFAULT
@@ -920,6 +924,8 @@ Resources:
                     PostFilterSharpening: AUTO
                     Strength: AUTO
             Name: high
+            Width: 1280
+            Height: 720
             RespondToAfd: NONE
             Sharpness: 50
             ScalingBehavior: DEFAULT
@@ -932,17 +938,21 @@ Resources:
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
-                FramerateControl: INITIALIZE_FROM_SOURCE
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
                 GopBReference: DISABLED
                 GopClosedCadence: 1
-                GopSize: 2
+                GopSize: 1
                 GopSizeUnits: SECONDS
                 SubgopLength: FIXED
                 ScanType: PROGRESSIVE
                 Level: H264_LEVEL_AUTO
                 LookAheadRateControl: LOW
                 NumRefFrames: 1
-                ParControl: INITIALIZE_FROM_SOURCE
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
                 Profile: MAIN
                 RateControlMode: CBR
                 Syntax: DEFAULT
