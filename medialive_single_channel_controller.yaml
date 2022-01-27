@@ -855,7 +855,7 @@ Resources:
         MaximumBitrate: MAX_10_MBPS
         Resolution: HD
       LogLevel: DISABLED
-      RoleArn: !Ref IAMRoleForMediaLive
+      RoleArn: !GetAtt IAMRoleForMediaLive.Arn
       InputAttachments:
         - InputId: !Ref ML1HLS
           InputAttachmentName: MainStream
