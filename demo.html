@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="stylesheet" href="rodeo.min.css" media="screen">
         <link rel="stylesheet" href="custom.css" media="screen">
+        <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 
         <script src="jquery-3.5.1.min.js"> </script>
         <script src="popper.min.js"> </script>
@@ -63,7 +64,7 @@
         </div>
 
         <!-- DEMO SECTION -->
-
+        <!--
         <div id="channel_selection_container">
             <button class="collapsible" id="collapsible_btn" onclick="mediaLiveThumbs()">MediaLive Channel Selection</button>
             <div class="thumbs" id="thumbs"></div>
@@ -72,25 +73,18 @@
                 <p class="pulsate" id="instructions2">^^ Select a channel to control, please note if the demo status is IN USE or AVAILABLE</p>
             </div>
         </div>
+        -->
 
         <!-- div with line break 90% -->
         <div id="lbreak"></div>
         <div id="players_container">
             <div class="player-parent-wrp">
-                <div id="vu-meter-1" class='vu-meter-wrp'></div>
-                <div class="player-wrp" id="player-wrp-1"></div>
-                <p>Clean Feed</p>
-            </div>
-            <div class="player-parent-wrp">
-                <div class="player-wrp" id="player-wrp-2"></div>
-                <div id="vu-meter-2" class='vu-meter-wrp'></div>
-                <p>Graphics Feed</p>
+                <video-js style="text-align:center;margin:auto;margin-top:10px" id="my-video" class="vjs-default-skin" controls preload="auto" width="960" height="540"><source src="https://c4af3793bf76b33c.mediapackage.us-west-2.amazonaws.com/out/v1/aa0f4c8b4ac642a3bbd756f11a7c0a86/index.m3u8" type="application/x-mpegURL"></video-js>
             </div>
         </div>
-        <div id="channel_status"><h5>Channel Status: </h5></div>
+        <div id="channel_status"><h5>MediaLive Channel</h5></div>
         <div id="channel_control_wrapper">
             <div class="tab">
-                <button class="tablinks" onclick="showControlSubMenu(event,'reserve-channel')">Reserve Channel</button>
                 <button class="tablinks" onclick="showControlSubMenu(event,'startstop-channel')">Start/Stop Channel</button>
                 <button class="tablinks" onclick="showControlSubMenu(event,'switch-input')">Switch Input</button>
                 <button class="tablinks" onclick="showControlSubMenu(event,'gfx-overlay')">Graphic Overlay</button>
@@ -99,24 +93,7 @@
                 <button class="tablinks" onclick="showControlSubMenu(event,'html5-lthird')">HTML5 Lower Third</button>
                 <button class="tablinks" onclick="showControlSubMenu(event,'html5-bug')">HTML5 Bug</button>
             </div>
-            <div id="reserve-channel" class="tabcontent">
-                <h4>Reserve Channel</h4>
-                <p>This is where you have the option to reserve the channel for a set period of time for your demo. You will need to enter your email address and select a duration for the reservation.</p>
-                <label for="aliasbox">Enter your name:</label><input type="text" id="aliasbox"/>
-                <br/><br/>
-                <label for="reservation_duration">Reservation Duration:</label>
 
-                <select name="reservation_duration" id="reservation_duration">
-                    <option value="300">5 Minutes</option>
-                    <option value="600">10 Minutes</option>
-                    <option value="900">15 Minutes</option>
-                    <option value="1200">20 Minutes</option>
-                </select>
-                <br/>
-                <!-- Reserve Button -->
-                <button class="control_buttons" id="reserve" onclick="chreserve()">Reserve Now</button>
-
-            </div>
             <div id="startstop-channel" class="tabcontent">
                 <h4>Start/Stop Channel Control</h4>
                 <p>Test starting and stopping the MediaLive channel with a click of a button.</p>

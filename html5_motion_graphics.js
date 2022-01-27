@@ -27,78 +27,6 @@ function showControlSubMenu(evt, menuItem) {
 
 }
 
-function mediaLiveThumbs() {
-  console.log("Clicked medialive thumbs button");
-
-  if ( multiviewer_status == "off" ){
-    multiviewer_status = "on";
-  } else {
-    multiviewer_status = "off";
-  }
-
-  document.getElementById('collapsible_btn').classList.toggle("active");
-
-  if ( document.getElementById('instructions1').style.display != "none" &&  pipSelector == "") {
-    document.getElementById('instructions1').style.display = "none";
-    document.getElementById('instructions2').style.display = "inline-block";
-  } else if ( document.getElementById('instructions1').style.display != "inline-block" &&  pipSelector == "")  {
-    document.getElementById('instructions2').style.display = "none";
-    document.getElementById('instructions1').style.display = "inline-block";
-  }
-
-  var content = document.getElementById('thumbs')
-  if (content.style.maxHeight){
-    content.style.maxHeight = null;
-  } else {
-    content.style.maxHeight = "300px";
-  }
-
-};
-
-// Dynamically create table with channel map data
-function tableCreate(total_channels){
-
-    var body = document.body,
-        tbl  = document.createElement('table'),
-    columns = 8 / thumbnail_size;
-    thumb_height = 90 * thumbnail_size;
-    thumb_width = '100%' //160 * thumbnail_size;
-    tbl.style.width  = '1280px';
-    tbl.style.padding = '20px';
-    tbl.style.margin = 'auto';
-
-    rows_required = Math.ceil(total_channels / columns);
-
-    console.log("creating table with columns: "+ total_channels)
-    for(var i = 1; i <= rows_required; i++){
-        var tr = tbl.insertRow();
-        for(var j = 1; j < total_channels + 1; j++){
-
-            if( Math.ceil( j / columns ) == i ){
-                var td = tr.insertCell();
-
-                td.innerHTML = '<img height="'+thumb_height+'" width="'+thumb_width+'" id="thumb_jpg_'+j.toString()+'" src="'+live_event_map[j.toString()].proxy_thumbnail_name+'" onclick=\'thumbclick("'+j.toString()+'")\'/></br>' +live_event_map[j.toString()].channel_friendly_name
-                //td.innerHTML = '<img height="360" width="640" src="https://medialive-controller-s3bucket-1pb62ie1haq1n.s3.us-west-2.amazonaws.com/status_thumbnails/ph.jpg"/>'
-                td.style.padding = '10px 10px 10px 10px';
-            }
-        }
-    }
-    //document.body.appendChild(tbl)
-    document.getElementById("thumbs").appendChild(tbl);
-}
-
-
-setInterval(function() {
-// function to get updated thumbs from MediaLive channels - via S3
-if ( multiviewer_status == "on" ){
-for (channel in live_event_map){
-  var datevar = Date.now().toString()
-  var proxy_thumbnail_https = live_event_map[channel].proxy_thumbnail_name
-  document.getElementById('thumb_jpg_'+channel).src = proxy_thumbnail_https+'?rand='+datevar
-  }
-}
-}, 3000);
-
 
 function pageLoadFunction(){
 
@@ -107,25 +35,8 @@ function pageLoadFunction(){
   console.log("channel map : " + JSON.stringify(live_event_map))
   console.log("vod bucket: " + bucket)
 
-  var total_channels = Object.keys(live_event_map).length;
-    console.log("There are " + total_channels.toString() + " channels in this dashboard")
-    window.thumbnail_size = 1
-    if ( parseInt(total_channels) < 9 ) {
-      window.thumbnail_size = 2
-    } else {
-      window.thumbnail_size = 1
-    }
-
-    tableCreate(total_channels)
-
   // Populate the static dropdown elements with data obtained from the channel map json
   //bumperDropdownPopulate()
-
-  // set channel selector and multiviewer status
-  pipSelector = "";
-  pip = "";
-  multiviewer_status = "off";
-
     let dropdown = document.getElementById('gfx_overlay_selection');
     dropdown.length = 0;
 
@@ -136,7 +47,6 @@ function pageLoadFunction(){
     dropdown.add(defaultOption);
     dropdown.selectedIndex = 0;
 
-
   for (gfx_item in gfx_overlay_items){
 
         option = document.createElement('option');
@@ -145,164 +55,13 @@ function pageLoadFunction(){
         dropdown.add(option);
     }
 
+  var myVideo = videojs('my-video');
+      myVideo.src([
+          {type: "application/x-mpegURL", src: live_event_map["1"]["hls_url"]}
+      ]);
 
-  // Hide Control headers until a selection is made
-  /*
-  document.getElementById('channel_status').style.display = "none"
-  document.getElementById('channel_control').style.display = "none"
-  document.getElementById('selected_channel_info').style.display = "none"
-  document.getElementById('togglemultiviewer').style.display = "none"
-    */
-
-    channel_overview = '<table id="channel_overview"><tr><td id="channel_overview_channel_name"><h3></h3></td><td id="channel_overview_status"><h4 id="channelstatus"></h4></td></tr></table>';
-    document.getElementById('lbreak').innerHTML = channel_overview;
-
+    pipSelector = "1"
 }
-
-function channelReservationPoller(){
-  if ( pipSelector != "" ) {
-        // channel status
-        // API CALL HERE TO GET DYNAMODB STATUS
-        channelReservation('reservationsCheck')
-}
-}
-
-function channelReservationCounter(){
-  if ( pipSelector != "" ) {
-
-      var timenow = Math.floor(parseInt(Date.now()) / 1000);
-
-        // channel status
-        reservation_end_time = reservations[pip]["reservation_end_time"]
-        reservation_name = reservations[pip]["reservation_name"]
-
-        if ( reservation_end_time > timenow ) {
-          timeleft = reservation_end_time - timenow
-          channel_status = " - RESERVED - " + reservation_name + " - " + timeleft.toString() +" seconds";
-          document.getElementById('channelstatus').style.color = 'red';
-        } else {
-          channel_status = " - AVAILABLE";
-          document.getElementById('channelstatus').style.color = 'green';
-        }
-
-        // Create heading for channel control
-        channel_name = live_event_map[pip.toString()].channel_friendly_name;
-        channel_overview = '<table id="channel_overview"><tr><td id="channel_overview_channel_name"><h3>'+channel_name+'</h3></td><td id="channel_overview_status"><h4 id="channelstatus">'+channel_status+'</h4></td></tr></table>';
-        }
-          // Expand heading
-          document.getElementById('lbreak').innerHTML = channel_overview;
-          document.getElementById('lbreak').style.maxHeight = "40px";
-}
-
-setInterval(function() {
-  channelReservationPoller();
-
-},10000)
-
-setInterval(function() {
-  channelReservationCounter();
-},1000)
-
-
-function thumbclick(selected_channel){
-  console.log("Clicked channel thumb : " + pip);
-
-  pip = selected_channel;
-  pipSelector = selected_channel;
-  channelState(pip);
-  channelReservationPoller();
-
-  document.getElementById('instructions2').style.display = "none";
-  document.getElementById('channel_status').style.display = "inline-block";
-
-  // kill existing instance of players if loaded
-  var destroyCnt = 0;
-    if ( sldpPlayers.length > 0 ) {
-        for (var i = 0; i < sldpPlayers.length; i++) {
-          sldpPlayers[i].destroy(function () {
-            console.log("destroying current instance of player")
-            destroyCnt++;
-          })
-          }
-    } else {
-      console.log("No SLDP player to destroy")
-    }
-
-  // collapse multiviewer
-  //mediaLiveThumbs()
-  document.getElementById('collapsible_btn').classList.toggle("active");
-  document.getElementById('thumbs').style.maxHeight = null;
-
-
-  // turn off function that gets multiviewer jpgs
-  multiviewer_status = "off";
-
-
-
-
-  // view players and controls
-  document.getElementById('players_container').style.display = "inline-block";
-  document.getElementById('channel_control_wrapper').style.display = "inline-block";
-
-
-  // initialize players
-  function startPlayers () {
-      console.log("starting sdlp players, checking to see if they are loaded already....")
-
-      if ( sldpPlayers.length > 0 ) {
-        console.log("players were already loaded, sending to restart function")
-        restartPlayers();
-        doStart();
-      } else {
-        console.log("players not initialized, doing now....")
-        doStart();
-      }
-    }
-
-    function restartPlayers () {
-      var destroyCnt = 0;
-      console.log("players initialized : " + sldpPlayers.length)
-      for (var i = 0; i < sldpPlayers.length; i++) {
-        sldpPlayers[i].destroy(function () {
-          console.log("destroying current instance of player")
-          destroyCnt++;
-          if (destroyCnt == sldpPlayers.length) {
-            sldpPlayers = [];
-            doStart();
-          }
-        });
-      }
-    console.log("old instances of players have been removed.")
-    }
-
-    function doStart () {
-      console.log("initializing new sdlp players")
-      for (var i = 0; i < 2; i++) {
-        var streamurl;
-        if ( i == 0) {
-          streamurl = live_event_map[pip].low_latency_url_source
-        } else {
-          streamurl = live_event_map[pip].low_latency_url_medialive
-        }
-
-        var player = SLDP.init({
-          container:          'player-wrp-' + (i + 1),
-          stream_url:         streamurl,
-          buffering:          250,
-          autoplay:           true,
-          muted:              true,
-          height:             315,
-          width:              560,
-          vu_meter:           {type: 'input', mode: 'peak', container: 'vu-meter-' + (i + 1), rate: 10},
-        });
-        sldpPlayers[i] = player;
-      }
-    console.log("done initializing low latency players.")
-    }
-startPlayers()
-
-}
-
 
 function chstartstopcontrol(action_type){
   console.log("Running Channel Start/Stop function")

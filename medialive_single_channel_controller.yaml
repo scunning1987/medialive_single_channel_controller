@@ -10,12 +10,12 @@ Parameters:
     AllowedPattern: ^arn:aws:iam::.+ #(\d{12}|aws):policy/:+
     Default: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
-  HMTL5CompositionURL:
+  HMTL5CompositionEndpoint:
     Description: URL Provided to you that relates to your HTML5 graphics endpoint
     Type: String
     Default: https://replaceme.please
 
-  HMTL5APIKey:
+  HMTL5CtrlEndpoint:
     Description: API Key for the HTML5 endpoint
     Type: String
 
@@ -547,10 +547,17 @@ Resources:
               bucket = os.environ['BUCKET']
               s3_key = os.environ['CONFIG_KEY']
               api_ctrl = os.environ['APICTRL']
+              eml_channel = os.environ['EML_CHANNEL']
+              eml_ch_name = os.environ['EML_CHANNEL_NAME']
+              html5_ctrl = os.environ['HTML5_CTRL']
+              html5_gfx = os.environ['HTML5_GFX']
+              hls_url = os.environ['HLS_URL']
+
 
               LOGGER.info("Environment Variable : S3 Bucket : %s " % (bucket))
               LOGGER.info("Environment Variable : S3 Key : %s " % (s3_key))
               LOGGER.info("Environment Variable : API Ctrl : %s " % (api_ctrl))
+              LOGGER.info("Environment Variable : EML Channel is : %s (eml_channel))
 
               # "RequestType": "Create"
               if event['RequestType'] == "Create" or event['RequestType'] == "Update":
@@ -571,6 +578,12 @@ Resources:
                   # Edit json with deployment information
                   s3_data = json.loads(s3_response['Body'].read())
                   s3_data['control_api_endpoint_url'] = api_ctrl
+                  s3_data['channel_map']['1']['primary_channel_id'] = eml_channel
+                  s3_data['channel_map']['1']['proxy_gen_channel'] = eml_channel
+                  s3_data['channel_map']['1']['channel_friendly_name'] = eml_ch_name
+                  s3_data['channel_map']['1']['html5_graphics_url'] = html5_gfx
+                  s3_data['channel_map']['1']['html5_graphics_ctrl'] = html5_ctrl
+                  s3_data['channel_map']['1']['hls_url'] = hls_url
 
                   content_type = "application/json"
 
@@ -598,13 +611,25 @@ Resources:
         Variables:
           BUCKET: !Ref S3Bucket
           CONFIG_KEY: !GetAtt FileMover.channel_map
+          EML_CHANNEL: !GetAtt MediaLiveChannelDistribution.Arn
           APICTRL: !Sub https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${ApiStage}/dashboard-ctrl
+          EML_CHANNEL_NAME: !Ref MediaLiveChannelDistribution
+          HTML5_CTRL: !Ref HMTL5CtrlEndpoint
+          HTML5_GFX: !Ref HMTL5CompositionEndpoint
+          HLS_URL: "https://af93123e0d76e324607b5414578c69b2.p05sqb.channel-assembly.mediatailor.us-west-2.amazonaws.com/v1/channel/cunsco-1/hls.m3u8"
+
+          s3_data['channel_map']['1']['channel_friendly_name'] =
+          s3_data['channel_map']['1']['html5_graphics_url'] =
+          s3_data['channel_map']['1']['html5_graphics_ctrl'] =
+          s3_data['channel_map']['1']['hls_url']
+
       Tags:
         - Key: StackName
           Value: !Ref AWS::StackName
     DependsOn:
       - CloudFrontDistribution
       - ApiGateway
+      - MediaLiveChannelDistribution
 
 
 
@@ -1001,12 +1026,9 @@ Resources:
     DependsOn:
       - MediaPackageChannel
 
-    # IAMRoleForMediaLive - iam
-
     #################
     ## CloudFront
     #################
-
 
   CloudFrontOAI:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity

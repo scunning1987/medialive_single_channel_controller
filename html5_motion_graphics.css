@@ -56,8 +56,7 @@ td{
   width:90%;
   margin-top:20px;
   margin-left:5%;
-  position:relative;
-  display:none;
+  position:relative
 }
 .vu-meter-wrp {
   display:inline-block;
@@ -73,7 +72,7 @@ td{
   margin:0 auto;
 }
 .player-parent-wrp{
-  width:46%;
+  width:100%;
   text-align:center;
   min-width:640px;
   overflow:hidden;
@@ -82,7 +81,6 @@ td{
 #channel_control_wrapper{
   margin-top:20px;
   position:relative;
-  display:none;
   width:90%;
   margin-left:5%
 }
