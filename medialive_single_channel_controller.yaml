@@ -37,29 +37,29 @@ Resources:
           Value: !Ref AWS::StackName
 
   #
-  S3BucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref S3Bucket
-      PolicyDocument: !Sub
-        |-
-        {
-            "Version": "2012-10-17",
-            "Id": "PolicyForCloudFrontPrivateContent",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Principal": {
-                        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOAI}"
-                    },
-                    "Action": "s3:GetObject",
-                    "Resource": "arn:aws:s3:::${S3Bucket}/*"
-                }
-            ]
-        }
-    DependsOn:
-      - S3Bucket
-      - CloudFrontOAI
+#  S3BucketPolicy:
+#    Type: AWS::S3::BucketPolicy
+#    Properties:
+#      Bucket: !Ref S3Bucket
+#      PolicyDocument: !Sub
+#        |-
+#        {
+#            "Version": "2012-10-17",
+#            "Id": "PolicyForCloudFrontPrivateContent",
+#            "Statement": [
+#                {
+#                    "Effect": "Allow",
+#                    "Principal": {
+#                        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOAI}"
+#                    },
+#                    "Action": "s3:GetObject",
+#                    "Resource": "arn:aws:s3:::${S3Bucket}/*"
+#                }
+#            ]
+#        }
+#    DependsOn:
+#      - S3Bucket
+#      - CloudFrontOAI
 
 
   #################
@@ -1038,7 +1038,8 @@ Outputs:
   DashboardUrl:
     Description: Dashboard URL for MediaLive control
     #Value: !Sub https://${S3Bucket}.s3.${AWS::Region}.amazonaws.com/${FileMover.ui}
-    Value: !Sub https://${CloudFrontDistribution.DomainName}/${FileMover.demo}
+    #Value: !Sub https://${CloudFrontDistribution.DomainName}/${FileMover.demo}
+    Value: test
 
   APIEndpointURLGetSample:
     Description: API Endpoint for getting sample configuration, method - GET
