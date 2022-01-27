@@ -124,7 +124,7 @@ Resources:
   IAMRoleForMediaLive:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub ${AWS::StackName}MediaLiveAccessRole
+      RoleName: !Sub ${AWS::StackName}-MediaLiveAccessRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
@@ -822,7 +822,7 @@ Resources:
     Type: AWS::MediaLive::Input
     Properties:
       Name: !Sub hls_${AWS::StackName}
-      RoleArn: !Ref IAMRoleForMediaLive
+      #RoleArn: !Ref IAMRoleForMediaLive
       Type: URL_PULL
       Sources:
         - Url: https://af93123e0d76e324607b5414578c69b2.p05sqb.channel-assembly.mediatailor.us-west-2.amazonaws.com/v1/channel/cunsco-1/hls.m3u8
@@ -831,7 +831,7 @@ Resources:
     Type: AWS::MediaLive::Input
     Properties:
       Name: !Sub mp4l_${AWS::StackName}
-      RoleArn: !Ref IAMRoleForMediaLive
+      #RoleArn: !Ref IAMRoleForMediaLive
       Type: MP4_FILE
       Sources:
         - Url: s3://$urlPath$
@@ -840,7 +840,7 @@ Resources:
     Type: AWS::MediaLive::Input
     Properties:
       Name: !Sub mp4c_${AWS::StackName}
-      RoleArn: !Ref IAMRoleForMediaLive
+      #RoleArn: !Ref IAMRoleForMediaLive
       Type: MP4_FILE
       Sources:
         - Url: s3://$urlPath$
