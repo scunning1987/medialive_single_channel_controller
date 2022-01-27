@@ -618,11 +618,6 @@ Resources:
           HTML5_GFX: !Ref HMTL5CompositionEndpoint
           HLS_URL: "https://af93123e0d76e324607b5414578c69b2.p05sqb.channel-assembly.mediatailor.us-west-2.amazonaws.com/v1/channel/cunsco-1/hls.m3u8"
 
-          s3_data['channel_map']['1']['channel_friendly_name'] =
-          s3_data['channel_map']['1']['html5_graphics_url'] =
-          s3_data['channel_map']['1']['html5_graphics_ctrl'] =
-          s3_data['channel_map']['1']['hls_url']
-
       Tags:
         - Key: StackName
           Value: !Ref AWS::StackName
@@ -1097,6 +1092,9 @@ Outputs:
   APIEndpointURLPutConfig:
     Description: API Endpoint for updating existing configuration, method - PUT
     Value: !Sub https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${ApiStage}/dashboard-cfg/update
+
+  EMPEndpoint:
+    Value: !GetAtt MediaPackageOriginEndpoint.Url
 
   #APIEndpointURLCTRL:
   #  Description: API Endpoint to control the MediaLive channels. This URL is needed when updating the config
