@@ -235,8 +235,8 @@ Resources:
       Bucket: !Ref S3Bucket
       Config_Key: !GetAtt FileMover.channel_map
       Api_Ctrl: !Sub https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${ApiStage}/dashboard-ctrl
-      HTML5_URL: !Ref HMTL5CompositionURL
-      HTML5_KEY: !Ref HMTL5APIKey
+      HTML5_URL: !Ref HMTL5CompositionEndpoint
+      HTML5_KEY: !Ref HMTL5CtrlEndpoint
 
     DependsOn:
       - CloudFrontDistribution
