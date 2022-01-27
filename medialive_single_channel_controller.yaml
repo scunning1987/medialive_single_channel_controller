@@ -885,7 +885,7 @@ Resources:
                 CodingMode: CODING_MODE_2_0
                 Profile: LC
                 Bitrate: 128.0
-                SampleRate: 44.0
+                SampleRate: 48000
         VideoDescriptions:
           - CodecSettings:
               H264Settings:
