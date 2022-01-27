@@ -884,7 +884,7 @@ Resources:
               AacSettings:
                 CodingMode: CODING_MODE_2_0
                 Profile: LC
-                Bitrate: 128.0
+                Bitrate: 128000
                 SampleRate: 48000
         VideoDescriptions:
           - CodecSettings:
