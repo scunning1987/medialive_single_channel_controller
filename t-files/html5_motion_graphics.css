@@ -91,6 +91,7 @@ td{
   width:90%;
   margin-left:5%;
   font-variant: small-caps;
+  display:inline;
 }
 /* Style the tab */
 .tab {

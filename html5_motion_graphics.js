@@ -61,6 +61,7 @@ function pageLoadFunction(){
       ]);
 
     pipSelector = "1"
+    channelState()
 }
 
 function chstartstopcontrol(action_type){
@@ -156,23 +157,23 @@ function gfx_overlay(actiontype){
   var gfx_position = document.getElementById("gfx_overlay_position").value;
   var gfx_duration = document.getElementById("durationinput").value;
 
-  var timenow = Math.floor(parseInt(Date.now()) / 1000);
-
-  // channel status
-  reservation_end_time = reservations[pip]["reservation_end_time"];
-
-  if ( reservation_end_time > timenow ) {
-    // we can do graphics!
-    timeleft = reservation_end_time - timenow;
-
-    if ( gfx_duration == 0 || gfx_duration > timeleft ) {
-      gfx_duration = timeleft;
-    }
-
-  } else {
-    console.log("The channel is not reserved, so we're not going to put up graphics");
-    oktoinsert = false;
-  }
+//  var timenow = Math.floor(parseInt(Date.now()) / 1000);
+//
+//  // channel status
+//  reservation_end_time = reservations[pip]["reservation_end_time"];
+//
+//  if ( reservation_end_time > timenow ) {
+//    // we can do graphics!
+//    timeleft = reservation_end_time - timenow;
+//
+//    if ( gfx_duration == 0 || gfx_duration > timeleft ) {
+//      gfx_duration = timeleft;
+//    }
+//
+//  } else {
+//    console.log("The channel is not reserved, so we're not going to put up graphics");
+//    oktoinsert = false;
+//  }
 
 
   var gfx_fade = document.getElementById("gfx_overlay_fade").value;
@@ -491,11 +492,13 @@ function channelStartStop(startstop){
 
 function emlSwitchAction(file, channelid, bucket, takeType, follow, maxresults, awsaccount, scte){
 
-    if ( takeType.includes("html5") || takeType.includes("gfx")) {
+
+        //    if ( takeType.includes("html5") || takeType.includes("gfx")) {
+        //        channels = [ live_event_map[pipSelector].primary_channel_id ];
+        //    } else {
+        //        channels = [ live_event_map[pipSelector].proxy_gen_channel , live_event_map[pipSelector].primary_channel_id ];
+        //    }
         channels = [ live_event_map[pipSelector].primary_channel_id ];
-    } else {
-        channels = [ live_event_map[pipSelector].proxy_gen_channel , live_event_map[pipSelector].primary_channel_id ];
-    }
         for ( i in channels ) {
 
             console.log("eml switch action api call: initializing")
@@ -544,7 +547,7 @@ function channelState() {
 
     request.onload = function() {
       if (request.status === 200) {
-        const state_data = JSON.parse(request.responseText);
+        var state_data = JSON.parse(request.responseText);
         console.log("channel state api call response : " + JSON.stringify(state_data))
         document.getElementById('channel_status').innerHTML = '<h5>Channel Status: '+state_data.status+'</h5>'
        } else {
