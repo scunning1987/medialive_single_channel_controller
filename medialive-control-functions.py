@@ -752,8 +752,8 @@ def lambda_handler(event, context):
             schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Layer'] = int(layer)
             schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['ImageX'] = int(gfx_x)
             schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['ImageY'] = int(gfx_y)
-            schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Width'] = 480
-            schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Height'] = 260
+            schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Width'] = 160
+            schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Height'] = 90
             schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Image'] = {}
             schedule_action_activate['ScheduleActionSettings']['StaticImageActivateSettings']['Image']['Uri'] = gfx_url
 
