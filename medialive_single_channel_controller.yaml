@@ -557,7 +557,7 @@ Resources:
               LOGGER.info("Environment Variable : S3 Bucket : %s " % (bucket))
               LOGGER.info("Environment Variable : S3 Key : %s " % (s3_key))
               LOGGER.info("Environment Variable : API Ctrl : %s " % (api_ctrl))
-              LOGGER.info("Environment Variable : EML Channel is : %s (eml_channel))
+              LOGGER.info("Environment Variable : EML Channel is : %s " % (eml_channel))
 
               # "RequestType": "Create"
               if event['RequestType'] == "Create" or event['RequestType'] == "Update":
@@ -611,12 +611,12 @@ Resources:
         Variables:
           BUCKET: !Ref S3Bucket
           CONFIG_KEY: !GetAtt FileMover.channel_map
-          EML_CHANNEL: !GetAtt MediaLiveChannelDistribution.Arn
+          EML_CHANNEL: !Ref MediaLiveChannelDistribution
           APICTRL: !Sub https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${ApiStage}/dashboard-ctrl
           EML_CHANNEL_NAME: !Ref MediaLiveChannelDistribution
           HTML5_CTRL: !Ref HMTL5CtrlEndpoint
           HTML5_GFX: !Ref HMTL5CompositionEndpoint
-          HLS_URL: "https://af93123e0d76e324607b5414578c69b2.p05sqb.channel-assembly.mediatailor.us-west-2.amazonaws.com/v1/channel/cunsco-1/hls.m3u8"
+          HLS_URL: !GetAtt MediaPackageOriginEndpoint.Url
 
       Tags:
         - Key: StackName
@@ -625,6 +625,7 @@ Resources:
       - CloudFrontDistribution
       - ApiGateway
       - MediaLiveChannelDistribution
+      - MediaPackageChannel
 
 
 
