@@ -903,6 +903,9 @@ Resources:
       EncoderSettings:
         FeatureActivations:
           InputPrepareScheduleActions: ENABLED
+        MotionGraphicsConfiguration:
+          MotionGraphicsSettings:
+            HtmlMotionGraphicsSettings: {}
         AudioDescriptions:
           - Name: audio_0
             AudioTypeControl: FOLLOW_INPUT
