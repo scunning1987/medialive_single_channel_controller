@@ -904,8 +904,8 @@ Resources:
         FeatureActivations:
           InputPrepareScheduleActions: ENABLED
         MotionGraphicsConfiguration:
+          MotionGraphicsInsertion: ENABLED
           MotionGraphicsSettings:
-            MotionGraphicsInsertion: ENABLED
             HtmlMotionGraphicsSettings: {}
         AudioDescriptions:
           - Name: audio_0
