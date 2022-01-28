@@ -922,50 +922,8 @@ Resources:
               H264Settings:
                 AfdSignaling: NONE
                 ColorMetadata: IGNORE
-                AdaptiveQuantization: HIGH
-                Bitrate: 20000000
-                EntropyEncoding: CABAC
-                FlickerAq: ENABLED
-                ForceFieldPictures: DISABLED
-                FramerateControl: SPECIFIED
-                FramerateDenominator: 1001
-                FramerateNumerator: 30000
-                GopBReference: DISABLED
-                GopClosedCadence: 1
-                GopSize: 1
-                GopSizeUnits: SECONDS
-                SubgopLength: FIXED
-                ScanType: INTERLACED
-                Level: H264_LEVEL_AUTO
-                LookAheadRateControl: MEDIUM
-                NumRefFrames: 1
-                ParControl: SPECIFIED
-                ParNumerator: 1
-                ParDenominator: 1
-                Profile: HIGH
-                RateControlMode: CBR
-                Syntax: DEFAULT
-                SceneChangeDetect: ENABLED
-                SpatialAq: ENABLED
-                TemporalAq: ENABLED
-                TimecodeInsertion: PIC_TIMING_SEI
-                QualityLevel: ENHANCED_QUALITY
-                FilterSettings:
-                  TemporalFilterSettings:
-                    PostFilterSharpening: AUTO
-                    Strength: AUTO
-            Name: high
-            Width: 1280
-            Height: 720
-            RespondToAfd: NONE
-            Sharpness: 50
-            ScalingBehavior: DEFAULT
-          - CodecSettings:
-              H264Settings:
-                AfdSignaling: NONE
-                ColorMetadata: IGNORE
-                AdaptiveQuantization: LOW
-                Bitrate: 250000
+                AdaptiveQuantization: AUTO
+                Bitrate: 3500000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -979,25 +937,288 @@ Resources:
                 SubgopLength: FIXED
                 ScanType: PROGRESSIVE
                 Level: H264_LEVEL_AUTO
-                LookAheadRateControl: LOW
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: HIGH
+                RateControlMode: QVBR
+                QvbrQualityLevel: 7
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 720high
+            Width: 1280
+            Height: 720
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 2500000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: HIGH
+                RateControlMode: QVBR
+                QvbrQualityLevel: 7
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 720med
+            Width: 1280
+            Height: 720
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 2000000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: HIGH
+                RateControlMode: QVBR
+                QvbrQualityLevel: 7
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 720low
+            Width: 1280
+            Height: 720
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 1500000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
                 NumRefFrames: 1
                 ParControl: SPECIFIED
                 ParNumerator: 1
                 ParDenominator: 1
                 Profile: MAIN
-                RateControlMode: CBR
+                RateControlMode: QVBR
+                QvbrQualityLevel: 8
                 Syntax: DEFAULT
                 SceneChangeDetect: ENABLED
                 SpatialAq: ENABLED
                 TemporalAq: ENABLED
-                TimecodeInsertion: DISABLED
-                QualityLevel: STANDARD_QUALITY
-            Height: 360
-            Name: low
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 540high
+            Width: 960
+            Height: 540
             RespondToAfd: NONE
             Sharpness: 50
             ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 1000000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: MAIN
+                RateControlMode: QVBR
+                QvbrQualityLevel: 7
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 540low
+            Width: 960
+            Height: 540
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 800000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: MAIN
+                RateControlMode: QVBR
+                QvbrQualityLevel: 6
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 360high
             Width: 640
+            Height: 360
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
+          - CodecSettings:
+              H264Settings:
+                AfdSignaling: NONE
+                ColorMetadata: IGNORE
+                AdaptiveQuantization: AUTO
+                Bitrate: 450000
+                EntropyEncoding: CABAC
+                FlickerAq: ENABLED
+                ForceFieldPictures: DISABLED
+                FramerateControl: SPECIFIED
+                FramerateDenominator: 1001
+                FramerateNumerator: 30000
+                GopBReference: DISABLED
+                GopClosedCadence: 1
+                GopSize: 1
+                GopSizeUnits: SECONDS
+                SubgopLength: FIXED
+                ScanType: PROGRESSIVE
+                Level: H264_LEVEL_AUTO
+                LookAheadRateControl: MEDIUM
+                NumRefFrames: 1
+                ParControl: SPECIFIED
+                ParNumerator: 1
+                ParDenominator: 1
+                Profile: MAIN
+                RateControlMode: QVBR
+                QvbrQualityLevel: 6
+                Syntax: DEFAULT
+                SceneChangeDetect: ENABLED
+                SpatialAq: ENABLED
+                TemporalAq: ENABLED
+                TimecodeInsertion: PIC_TIMING_SEI
+                QualityLevel: ENHANCED_QUALITY
+                FilterSettings:
+                  TemporalFilterSettings:
+                    PostFilterSharpening: AUTO
+                    Strength: AUTO
+            Name: 360low
+            Width: 640
+            Height: 360
+            RespondToAfd: NONE
+            Sharpness: 50
+            ScalingBehavior: DEFAULT
         CaptionDescriptions: []
         OutputGroups:
           - Name: MediaPackageOutput
@@ -1006,18 +1227,53 @@ Resources:
                 Destination:
                   DestinationRefId: emp1
             Outputs:
-              - OutputName: high
-                VideoDescriptionName: high
+              - OutputName: 720high
+                VideoDescriptionName: 720high
                 AudioDescriptionNames:
                   - audio_0
                 CaptionDescriptionNames: []
                 OutputSettings:
                   MediaPackageOutputSettings: {}
-              - OutputName: low
-                VideoDescriptionName: low
+              - OutputName: 720med
+                VideoDescriptionName: 720med
                 AudioDescriptionNames:
                   - audio_0
                 CaptionDescriptionNames: [ ]
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: 720low
+                VideoDescriptionName: 720low
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: [ ]
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: 540high
+                VideoDescriptionName: 540high
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: [ ]
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: 540low
+                VideoDescriptionName: 540low
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: []
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: 360high
+                VideoDescriptionName: 360high
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: []
+                OutputSettings:
+                  MediaPackageOutputSettings: {}
+              - OutputName: 360low
+                VideoDescriptionName: 360low
+                AudioDescriptionNames:
+                  - audio_0
+                CaptionDescriptionNames: []
                 OutputSettings:
                   MediaPackageOutputSettings: {}
 
