@@ -905,6 +905,7 @@ Resources:
           InputPrepareScheduleActions: ENABLED
         MotionGraphicsConfiguration:
           MotionGraphicsSettings:
+            MotionGraphicsInsertion: ENABLED
             HtmlMotionGraphicsSettings: {}
         AudioDescriptions:
           - Name: audio_0
