@@ -888,6 +888,7 @@ Resources:
               HlsInputSettings:
                 BufferSegments: 3
                 Scte35Source: MANIFEST
+                Bandwidth: 9000000
         - InputId: !Ref ML1MP4L
           InputAttachmentName: LoopMP4
           InputSettings:
