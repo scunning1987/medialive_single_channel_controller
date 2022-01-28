@@ -77,6 +77,19 @@ function chstartstopcontrol(action_type){
       // API Call to start/stop channel
       channelStartStop(action_type)
 
+      // enable or disable html5
+      if (action_type == "start"){
+          html5settings = {
+                "type":"html5activate",
+                "duration":0,
+                "url":live_event_map[pipSelector].html5_graphics_url,
+                "html5_apiendpoint_ctrl": live_event_map[pipSelector].html5_graphics_ctrl
+              }
+              html5settings_b64 = btoa(JSON.stringify(html5settings))
+              switchtype = "html5Activate"
+              channelid = live_event_map[pipSelector].primary_channel_id
+              emlSwitchAction(html5settings_b64, channelid, "bucket", switchtype, "", 200, "master", html5settings_b64)
+      }
       // reset styling on the pip now that the action has been performed
       fadeAway(action_type)
     }
