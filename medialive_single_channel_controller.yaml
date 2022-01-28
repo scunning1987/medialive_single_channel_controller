@@ -924,6 +924,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 3500000
+                MaxBitrate: 3500000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -967,6 +968,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 2500000
+                MaxBitrate: 2500000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -1010,6 +1012,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 2000000
+                MaxBitrate: 2000000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -1053,6 +1056,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 1500000
+                MaxBitrate: 1500000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -1096,6 +1100,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 1000000
+                MaxBitrate: 1000000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
@@ -1138,6 +1143,7 @@ Resources:
                 AfdSignaling: NONE
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
+                MaxBitrate: 800000
                 Bitrate: 800000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
@@ -1182,6 +1188,7 @@ Resources:
                 ColorMetadata: IGNORE
                 AdaptiveQuantization: AUTO
                 Bitrate: 450000
+                MaxBitrate: 450000
                 EntropyEncoding: CABAC
                 FlickerAq: ENABLED
                 ForceFieldPictures: DISABLED
