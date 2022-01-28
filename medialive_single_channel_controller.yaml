@@ -6,18 +6,19 @@
 Parameters:
   S3PolicyForMediaAccess:
     Description: Policy that gives Lambda access to customer managed S3 Bucket
-    Type: String
+    Type: Strings
     AllowedPattern: ^arn:aws:iam::.+ #(\d{12}|aws):policy/:+
     Default: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
   HMTL5CompositionEndpoint:
     Description: URL Provided to you that relates to your HTML5 graphics endpoint
     Type: String
-    Default: https://replaceme.please
+    Default: https://app.singular.live/output/0qP507UyvJ5qp0qLJ4j7bH/Output?aspect=16:9
 
   HMTL5CtrlEndpoint:
     Description: API Key for the HTML5 endpoint
     Type: String
+    Default: https://app.singular.live/apiv1/control/6VUGXjaVB56uqpaLuVh0Zq
 
 ## Resources
 Resources:
