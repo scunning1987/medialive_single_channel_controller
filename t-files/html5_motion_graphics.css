@@ -88,7 +88,6 @@ td{
 }
 #channel_status{
   position:relative;
-  display:none;
   width:90%;
   margin-left:5%;
   font-variant: small-caps;
