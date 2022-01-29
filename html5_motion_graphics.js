@@ -203,16 +203,16 @@ function gfx_overlay(actiontype){
       y = 20;
       break;
     case "2":
-      x = 900;
+      x = 1100;
       y = 20;
       break;
     case "3":
       x = 20;
-      y = 580;
+      y = 600;
       break;
     case "4":
-      x = 900;
-      y = 580;
+      x = 1100;
+      y = 600;
       break;
     default:
       x = 20;

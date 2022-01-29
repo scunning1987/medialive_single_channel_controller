@@ -888,7 +888,7 @@ Resources:
               HlsInputSettings:
                 BufferSegments: 3
                 Scte35Source: MANIFEST
-                Bandwidth: 9000000
+                Bandwidth: 8000000
         - InputId: !Ref ML1MP4L
           InputAttachmentName: LoopMP4
           InputSettings:
@@ -908,6 +908,8 @@ Resources:
           MotionGraphicsInsertion: ENABLED
           MotionGraphicsSettings:
             HtmlMotionGraphicsSettings: {}
+        GlobalConfiguration:
+          OutputTimingSource: SYSTEM_CLOCK
         AudioDescriptions:
           - Name: audio_0
             AudioTypeControl: FOLLOW_INPUT
@@ -1286,7 +1288,7 @@ Resources:
                   MediaPackageOutputSettings: {}
 
         TimecodeConfig:
-          Source: EMBEDDED
+          Source: SYSTEMCLOCK
       Tags:
         Bumpers: Bumpers
     DependsOn:
