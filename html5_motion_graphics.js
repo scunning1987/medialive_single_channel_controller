@@ -475,7 +475,8 @@ function channelStartStop(startstop){
       return;
     }
 
-    channels = [ live_event_map[pipSelector].proxy_gen_channel , live_event_map[pipSelector].primary_channel_id ];
+    //channels = [ live_event_map[pipSelector].proxy_gen_channel , live_event_map[pipSelector].primary_channel_id ];
+    channels = [ live_event_map[pipSelector].primary_channel_id ];
 
     for ( i in channels ) {
 
