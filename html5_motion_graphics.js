@@ -75,7 +75,7 @@ function chstartstopcontrol(action_type){
       document.getElementById(action_type).classList.add('pressedbutton');
       console.log("action type: "+action_type+" for channel ID : "+live_event_map[pipSelector].primary_channel_id)
       // API Call to start/stop channel
-      channelStartStop(action_type)
+//      channelStartStop(action_type)
 
       // enable or disable html5
       var html5_duration = 10
@@ -95,6 +95,7 @@ function chstartstopcontrol(action_type){
           emlSwitchAction(html5settings_b64, channelid, "bucket", switchtype, "", 200, "master", html5settings_b64)
 
       // reset styling on the pip now that the action has been performed
+      channelStartStop(action_type)
       fadeAway(action_type)
     }
   }
