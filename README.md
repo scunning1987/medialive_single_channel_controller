@@ -1,4 +1,4 @@
-#### Deploy CloudFormation template
+### Deploy CloudFormation template
 
 1. Download the CloudFormation template from [here](https://raw.githubusercontent.com/scunning1987/medialive_single_channel_controller/main/medialive_single_channel_controller.yaml)
 2. Right-click on the page that opens and select **Save Page As**. Choose a folder locally to save the template
