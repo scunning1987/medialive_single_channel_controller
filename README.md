@@ -43,9 +43,8 @@ Congratulations, you're now deploying an end to end video pipeline and control a
 
 ![](images/cf-create-stack-3.png?width=40pc&classes=border,shadow)
 
-{{% notice info %}}
-Note, this CloudFormation stack creation will take 10-15 minutes... This is because a CloudFront distribution is created as part of the stack, and it takes a while to propagate settings to all edge locations. All other resources are created within a few minutes.
-{{% /notice %}}
+
+**Note, this CloudFormation stack creation will take 10-15 minutes... This is because a CloudFront distribution is created as part of the stack, and it takes a while to propagate settings to all edge locations. All other resources are created within a few minutes.**
 
 ---
 
