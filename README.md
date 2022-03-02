@@ -1,10 +1,10 @@
 ### HTML5 Motion Graphics tool
 
-This demo relies on a graphics composition from an external source [Singular Live](https://singular.live){:target="_blank"}
+This demo relies on a graphics composition from an external source [Singular Live](https://singular.live)
 
 1. Create a free account
 
-2. Open the [Singular Dashboard](https://app.singular.live/dashboard){:target="_blank"}
+2. Open the [Singular Dashboard](https://app.singular.live/dashboard)
 
 3. Open composition templates, under **Sports**, select the **Minimal** template. Then select **Use this template**
 
