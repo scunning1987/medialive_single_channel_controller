@@ -1,10 +1,10 @@
 ### HTML5 Motion Graphics tool
 
-This demo relies on a graphics composition from an external source [Singular Live](https://singular.live)
+This demo relies on a graphics composition from an external source [Singular Live](https://singular.live){:target="_blank"}
 
 1. Create a free account
 
-2. Open the [Singular Dashboard](https://app.singular.live/dashboard)
+2. Open the [Singular Dashboard](https://app.singular.live/dashboard){:target="_blank"}
 
 3. Open composition templates, under **Sports**, select the **Minimal** template. Then select **Use this template**
 
@@ -17,6 +17,8 @@ This demo relies on a graphics composition from an external source [Singular Liv
 7. Close the Manage Access window and then select the button with 3 vertical dots again, then select **Output URL**
 
 8. Copy the displayed URL to be used later
+
+9. You can exit the Singular application
 
 ### Deploy CloudFormation template
 
