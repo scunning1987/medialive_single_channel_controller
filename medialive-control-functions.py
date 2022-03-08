@@ -621,7 +621,7 @@ def lambda_handler(event, context):
                 region = channel.split(":")[1].split(",")[0]
             else:
                 channelid = channel
-                region = "us-west-2" # as a default region to use...
+                region = os.environ['REGION']
 
             if region in cwatchregions:
                 cwatchregions[region].append(channelid)
