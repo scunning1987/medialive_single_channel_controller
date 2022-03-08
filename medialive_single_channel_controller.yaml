@@ -518,7 +518,7 @@ Resources:
           OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
           SOFTWARE.
 
-          Summary: This script is a custom resource to place the HTML pages and Lambda code into the destination bucket.
+          Summary: This script updates the channel_map json which is used to load channel details into the ui
 
           Original Author: Scott Cunningham
           '''
@@ -556,6 +556,7 @@ Resources:
               html5_ctrl = os.environ['HTML5_CTRL']
               html5_gfx = os.environ['HTML5_GFX']
               hls_url = os.environ['HLS_URL']
+              ch_region = os.environ['CHANNEL_REGION']
 
 
               LOGGER.info("Environment Variable : S3 Bucket : %s " % (bucket))
@@ -588,6 +589,7 @@ Resources:
                   s3_data['channel_map']['1']['html5_graphics_url'] = html5_gfx
                   s3_data['channel_map']['1']['html5_graphics_ctrl'] = html5_ctrl
                   s3_data['channel_map']['1']['hls_url'] = hls_url
+                  s3_data['channel_map']['1']['channel_region'] = ch_region
 
                   content_type = "application/json"
 
@@ -621,6 +623,7 @@ Resources:
           HTML5_CTRL: !Ref HMTL5CtrlEndpoint
           HTML5_GFX: !Ref HMTL5CompositionEndpoint
           HLS_URL: !GetAtt MediaPackageOriginEndpoint.Url
+          CHANNEL_REGION: !Ref 'AWS::Region'
 
       Tags:
         - Key: StackName
