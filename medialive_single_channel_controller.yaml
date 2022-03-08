@@ -259,6 +259,9 @@ Resources:
       Code:
         S3Bucket: !Ref S3Bucket
         S3Key: !GetAtt FileMover.medialive-control-functions
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
       Tags:
         - Key: StackName
           Value: !Ref AWS::StackName

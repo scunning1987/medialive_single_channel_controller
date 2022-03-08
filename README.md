@@ -90,9 +90,11 @@ Open the URL in a new tab on your browser. There are 3 key areas to note in the 
 
 ![](images/medialive-controller-1.png?width=60pc&classes=border,shadow)
 
-{{% notice info %}}
+---
+
 Your video player may likely display an error. That's because it's attempted to play your live stream, but as you've not streamed any content yet, there's nothing for it to load
-{{% /notice %}}
+
+---
 
 ### Start your channel
 
