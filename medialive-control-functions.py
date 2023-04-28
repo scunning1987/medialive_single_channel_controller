@@ -30,6 +30,7 @@ import math
 def lambda_handler(event, context):
 
     print("INFO : Event Details - ",event)
+    print("Function: %s" % (event['queryStringParameters']['functiontorun']))
 
     event = event['queryStringParameters']
 
@@ -978,6 +979,7 @@ def lambda_handler(event, context):
         response_status['Activation_Type'] = inout
 
         response_status['Overlay_Type'] = type
+        response_status['state'] = inout
 
         if type == "ticker":
             ticker_title = html5_json['ticker_title']
@@ -988,15 +990,15 @@ def lambda_handler(event, context):
             # find the right composition
             for i in range(0,len(compositions)):
                 composition = compositions[i]
-                if composition['compositionName'] == composition_name:
+                if composition['subCompositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
                         del composition['state']
                         composition['action'] = 'play'
                         composition['to'] = inout
-                        composition['controlNode']['payload']['Ticker Text'] = ticker_text
-                        composition['controlNode']['payload']['Ticker Text Speed'] = ticker_speed
-                        composition['controlNode']['payload']['Title'] = ticker_title
+                        composition['payload']['Ticker Text'] = ticker_text
+                        composition['payload']['Ticker Text Speed'] = ticker_speed
+                        composition['payload']['Title'] = ticker_title
                     else:
                         # we are deactivating overlay
                         del composition['state']
@@ -1019,7 +1021,7 @@ def lambda_handler(event, context):
             # find the right composition
             for i in range(0,len(compositions)):
                 composition = compositions[i]
-                if composition['compositionName'] == composition_name:
+                if composition['subCompositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
 
@@ -1028,66 +1030,66 @@ def lambda_handler(event, context):
                             del composition['state']
                             composition['action'] = 'play'
                             composition['to'] = inout
-                            composition['controlNode']['payload']['Team 1 Name'] = team_1_name
-                            composition['controlNode']['payload']['Team 1 Score'] = team_1_score
-                            composition['controlNode']['payload']['Team 2 Name'] = team_2_name
-                            composition['controlNode']['payload']['Team 2 Score'] = team_2_score
-                            composition['controlNode']['payload']['Match Clock - Minutes'] = str(int(match_clock_minutes))
-                            composition['controlNode']['payload']['Match Clock - Seconds'] = str(int(match_clock_seconds))
-                            composition['controlNode']['payload']['Half'] = match_half
-                            composition['controlNode']['payload']['Match Clock - Control']['isRunning'] = False
-                            composition['controlNode']['payload']['Match Clock - Control']['value'] = 0
+                            composition['payload']['Team 1 Name'] = team_1_name
+                            composition['payload']['Team 1 Score'] = team_1_score
+                            composition['payload']['Team 2 Name'] = team_2_name
+                            composition['payload']['Team 2 Score'] = team_2_score
+                            composition['payload']['Match Clock - Minutes'] = str(int(match_clock_minutes))
+                            composition['payload']['Match Clock - Seconds'] = str(int(match_clock_seconds))
+                            composition['payload']['Half'] = match_half
+                            composition['payload']['Match Clock - Control']['isRunning'] = False
+                            composition['payload']['Match Clock - Control']['value'] = 0
 
                             # configure clock
                             epoch_time_now = math.floor(time.time()) * 1000
-                            #start_epoch_time = (int(epoch_time_now) - ( int(match_clock_minutes) * 60 ) - int(match_clock_seconds)) + int(composition['controlNode']['payload']['Match Clock - Control']['value'])
+                            #start_epoch_time = (int(epoch_time_now) - ( int(match_clock_minutes) * 60 ) - int(match_clock_seconds)) + int(composition['payload']['Match Clock - Control']['value'])
                             start_epoch_time = int(epoch_time_now) - ((( int(match_clock_minutes) * 60 ) - int(match_clock_seconds)) * 1000 )
 
-                            composition['controlNode']['payload']['Match Clock - Control']['UTC'] = start_epoch_time
+                            composition['payload']['Match Clock - Control']['UTC'] = start_epoch_time
                         elif type == "score-score1update":
                             # update score for team 1
-                            composition['controlNode']['payload']['Team 1 Score'] = team_1_score
+                            composition['payload']['Team 1 Score'] = team_1_score
 
                         elif type == "score-score2update":
                             # update score for team 2
-                            composition['controlNode']['payload']['Team 2 Score'] = team_2_score
+                            composition['payload']['Team 2 Score'] = team_2_score
 
                         elif type == "score-matchcontrolstart":
                             # change isrunning to true
-                            composition['controlNode']['payload']['Match Clock - Control']['isRunning'] = True
+                            composition['payload']['Match Clock - Control']['isRunning'] = True
 
                             # calculate start time of clock
                             epoch_time_now = math.floor(time.time()) * 1000 #datetime.datetime.utcnow().strftime('%s') * 1000
                             clock_time_epochms = ((int(match_clock_minutes) * 60) + int(match_clock_seconds)) * 1000
 
-                            start_epoch_time = int(epoch_time_now) - int(clock_time_epochms) - int(composition['controlNode']['payload']['Match Clock - Control']['value'])
+                            start_epoch_time = int(epoch_time_now) - int(clock_time_epochms) - int(composition['payload']['Match Clock - Control']['value'])
 
 
-                            composition['controlNode']['payload']['Match Clock - Control']['UTC'] = start_epoch_time
-                            composition['controlNode']['payload']['Match Clock - Control']['value'] = 0
+                            composition['payload']['Match Clock - Control']['UTC'] = start_epoch_time
+                            composition['payload']['Match Clock - Control']['value'] = 0
 
 
                         elif type == "score-matchcontrolstop":
                             # stop clock and put epoch value of elapsed time in the value field
-                            composition['controlNode']['payload']['Match Clock - Control']['isRunning'] = False
+                            composition['payload']['Match Clock - Control']['isRunning'] = False
 
                             # calculate pause time value
                             epoch_time_now = math.floor(time.time()) * 1000
-                            pause_time = int(epoch_time_now) - int(composition['controlNode']['payload']['Match Clock - Control']['UTC'])
+                            pause_time = int(epoch_time_now) - int(composition['payload']['Match Clock - Control']['UTC'])
 
-                            composition['controlNode']['payload']['Match Clock - Control']['UTC'] = epoch_time_now
-                            composition['controlNode']['payload']['Match Clock - Control']['value'] = pause_time
+                            composition['payload']['Match Clock - Control']['UTC'] = epoch_time_now
+                            composition['payload']['Match Clock - Control']['value'] = pause_time
 
 
                         elif type == "score-matchcontrolreset":
                             # reset and change running value to false
-                            composition['controlNode']['payload']['Match Clock - Control']['isRunning'] = False
+                            composition['payload']['Match Clock - Control']['isRunning'] = False
 
                             epoch_time_now = math.floor(time.time()) * 1000
                             startover_epoch_time = int(epoch_time_now) - ((( int(match_clock_minutes) * 60 ) - int(match_clock_seconds)) * 1000 )
 
-                            composition['controlNode']['payload']['Match Clock - Control']['UTC'] = startover_epoch_time
-                            composition['controlNode']['payload']['Match Clock - Control']['value'] = 0
+                            composition['payload']['Match Clock - Control']['UTC'] = startover_epoch_time
+                            composition['payload']['Match Clock - Control']['value'] = 0
 
 
                     else:
@@ -1106,14 +1108,14 @@ def lambda_handler(event, context):
             # find the right composition
             for i in range(0,len(compositions)):
                 composition = compositions[i]
-                if composition['compositionName'] == composition_name:
+                if composition['subCompositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
                         del composition['state']
                         composition['action'] = 'play'
                         composition['to'] = inout
-                        composition['controlNode']['payload']['Line One Text'] = line_1_text
-                        composition['controlNode']['payload']['Line Two Text'] = line_2_text
+                        composition['payload']['Line One Text'] = line_1_text
+                        composition['payload']['Line Two Text'] = line_2_text
                     else:
                         # we are deactivating overlay
                         del composition['state']
@@ -1130,30 +1132,33 @@ def lambda_handler(event, context):
             # find the right composition
             for i in range(0,len(compositions)):
                 composition = compositions[i]
-                if composition['compositionName'] == composition_name:
+                if composition['subCompositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
                         del composition['state']
                         composition['action'] = 'play'
                         composition['to'] = inout
-                        composition['controlNode']['payload']['socialMediaLogo'] = social_url
-                        composition['controlNode']['payload']['text'] = social_text
+                        composition['payload']['socialMediaLogo'] = social_url
+                        composition['payload']['text'] = social_text
                     else:
                         # we are deactivating overlay
                         del composition['state']
                         composition['action'] = 'play'
                         composition['to'] = inout
+                        composition['state'] = inout
 
                     key_composition = composition
 
-        response_status['Composition_Body'] = key_composition
+        #response_status['Composition_Body'] = key_composition
+        del key_composition['mainComposition']
+        key_composition['state'] = inout
 
         new_compositions = []
         new_compositions.append(key_composition)
         new_compositions = json.dumps(new_compositions)
-
+        print(new_compositions)
         # Update the html5 render via API
-        put_response = http.request('PUT', html5_endpoint,body=new_compositions,headers={"Content-Type": "application/json"})
+        put_response = http.request('PATCH', html5_endpoint,body=new_compositions,headers={"Content-Type": "application/json"})
 
         response_status['htmlUpdateResponseCode'] = put_response.status
 
