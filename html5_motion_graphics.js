@@ -75,7 +75,7 @@ function chstartstopcontrol(action_type){
       document.getElementById(action_type).classList.add('pressedbutton');
       console.log("action type: "+action_type+" for channel ID : "+live_event_map[pipSelector].primary_channel_id)
       // API Call to start/stop channel
-//      channelStartStop(action_type)
+      channelStartStop(action_type)
 
       // enable or disable html5
       var html5_duration = 10

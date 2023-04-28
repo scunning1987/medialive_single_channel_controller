@@ -121,9 +121,9 @@ def lambda_handler(event, context):
                 if "DYNAMIC" in channel['InputSourceType']:
                     fileinputs.append({'name':channel['Name'],'id':channel['Id']})
 
-        if len(fileinputs) is 0:
+        if len(fileinputs) == 0:
             print("ERROR: No dynamic inputs attached to this channel!")
-        if len(liveinputs) is 0:
+        if len(liveinputs) == 0:
             print("ERROR: No live inputs attached to this channel!")
 
         inputdict = dict()
@@ -891,6 +891,7 @@ def lambda_handler(event, context):
         # Create urllib3 pool manager
         http = urllib3.PoolManager()
 
+        print("Composition endpoint: %s " % (html5_endpoint))
         # Get the html5 appinstance compositions
         get_response = http.request('GET', html5_endpoint)
 
@@ -905,31 +906,31 @@ def lambda_handler(event, context):
         new_compositions = []
         for i in range(0,len(compositions)):
             composition = compositions[i]
-            if composition['compositionName'] == "Baseline - Crawl":
+            if composition['subCompositionName'] == "Baseline - Crawl":
                 # we are deactivating overlay
-                del composition['animation']['state']
-                composition['animation']['action'] = "play"
-                composition['animation']['to'] = "Out1"
-                composition['controlNode']['payload']['Ticker Text'] = " ~ "
+                del composition['state']
+                composition['action'] = "play"
+                composition['to'] = "Out1"
+                composition['payload']['Ticker Text'] = " ~ "
 
                 new_compositions.append(composition)
-            elif composition['compositionName'] == "Score Bug - Soccer":
+            elif composition['subCompositionName'] == "Score Bug - Soccer":
                 # we are deactivating overlay
-                del composition['animation']['state']
-                composition['animation']['action'] = "play"
-                composition['animation']['to'] = "Out1"
+                del composition['state']
+                composition['action'] = "play"
+                composition['to'] = "Out1"
                 new_compositions.append(composition)
-            elif composition['compositionName'] == "Lower - 2 Line":
+            elif composition['subCompositionName'] == "Lower - 2 Line":
                 # we are deactivating overlay
-                del composition['animation']['state']
-                composition['animation']['action'] = "play"
-                composition['animation']['to'] = "Out1"
+                del composition['state']
+                composition['action'] = "play"
+                composition['to'] = "Out1"
                 new_compositions.append(composition)
-            elif composition['compositionName'] == "Bug - Social":
+            elif composition['subCompositionName'] == "Bug - Social":
                 # we are deactivating overlay
-                del composition['animation']['state']
-                composition['animation']['action'] = "play"
-                composition['animation']['to'] = "Out1"
+                del composition['state']
+                composition['action'] = "play"
+                composition['to'] = "Out1"
                 new_compositions.append(composition)
 
         new_compositions = json.dumps(new_compositions)
@@ -990,17 +991,17 @@ def lambda_handler(event, context):
                 if composition['compositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
                         composition['controlNode']['payload']['Ticker Text'] = ticker_text
                         composition['controlNode']['payload']['Ticker Text Speed'] = ticker_speed
                         composition['controlNode']['payload']['Title'] = ticker_title
                     else:
                         # we are deactivating overlay
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
 
                     key_composition = composition
         elif "score" in type:
@@ -1024,9 +1025,9 @@ def lambda_handler(event, context):
 
                         if type == "score":
 
-                            del composition['animation']['state']
-                            composition['animation']['action'] = 'play'
-                            composition['animation']['to'] = inout
+                            del composition['state']
+                            composition['action'] = 'play'
+                            composition['to'] = inout
                             composition['controlNode']['payload']['Team 1 Name'] = team_1_name
                             composition['controlNode']['payload']['Team 1 Score'] = team_1_score
                             composition['controlNode']['payload']['Team 2 Name'] = team_2_name
@@ -1091,9 +1092,9 @@ def lambda_handler(event, context):
 
                     else:
                         # we are deactivating overlay
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
 
                     key_composition = composition
 
@@ -1108,16 +1109,16 @@ def lambda_handler(event, context):
                 if composition['compositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
                         composition['controlNode']['payload']['Line One Text'] = line_1_text
                         composition['controlNode']['payload']['Line Two Text'] = line_2_text
                     else:
                         # we are deactivating overlay
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
 
                     key_composition = composition
 
@@ -1132,16 +1133,16 @@ def lambda_handler(event, context):
                 if composition['compositionName'] == composition_name:
                     if inout == "In":
                         # we are enabling overlay with features
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
                         composition['controlNode']['payload']['socialMediaLogo'] = social_url
                         composition['controlNode']['payload']['text'] = social_text
                     else:
                         # we are deactivating overlay
-                        del composition['animation']['state']
-                        composition['animation']['action'] = 'play'
-                        composition['animation']['to'] = inout
+                        del composition['state']
+                        composition['action'] = 'play'
+                        composition['to'] = inout
 
                     key_composition = composition
 
