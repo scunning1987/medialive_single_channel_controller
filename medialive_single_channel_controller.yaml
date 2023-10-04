@@ -1,4 +1,4 @@
-#### Title : MediaLive Multi-Channel Controller - Variation 377
+#### Title : MediaLive Single Channel Controller
 #### Author : Scott Cunningham
 #### 
 ####
@@ -43,23 +43,27 @@ Resources:
       PolicyDocument: !Sub
         |-
         {
-            "Version": "2012-10-17",
-            "Id": "PolicyForCloudFrontPrivateContent",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Principal": {
-                        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOAI}"
-                    },
-                    "Action": "s3:GetObject",
-                    "Resource": "arn:aws:s3:::${S3Bucket}/*"
-                }
-            ]
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Sid": "AllowCloudFrontServicePrincipalReadOnly",
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "cloudfront.amazonaws.com"
+                  },
+                  "Action": "s3:GetObject",
+                  "Resource": "arn:aws:s3:::${S3Bucket}/*",
+                  "Condition": {
+                      "StringEquals": {
+                          "AWS:SourceArn": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+                      }
+                  }
+              }
+              ]
         }
     DependsOn:
       - S3Bucket
-      - CloudFrontOAI
-
+      - CloudFrontOAC
 
   #################
   ## IAM & Permissions
@@ -1303,11 +1307,21 @@ Resources:
     ## CloudFront
     #################
 
-  CloudFrontOAI:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
-    Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: !Sub CloudFront OAI for Bucket ${S3Bucket}
+  # CloudFrontOAI:
+  #   Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+  #   Properties:
+  #     CloudFrontOriginAccessIdentityConfig:
+  #       Comment: !Sub CloudFront OAI for Bucket ${S3Bucket}
+
+  CloudFrontOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties: 
+      OriginAccessControlConfig: 
+        Name: !Sub ${S3Bucket}_OAC
+        Description: !Sub CloudFront OAC for Bucket ${S3Bucket}
+        OriginAccessControlOriginType: s3
+        SigningBehavior: no-override
+        SigningProtocol: sigv4
 
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -1319,8 +1333,8 @@ Resources:
         Origins:
           - DomainName: !Sub ${S3Bucket}.s3.${AWS::Region}.amazonaws.com
             Id: !Ref S3Bucket
-            S3OriginConfig:
-              OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CloudFrontOAI}
+            S3OriginConfig: {}
+            OriginAccessControlId: !Ref CloudFrontOAC
         DefaultCacheBehavior:
           AllowedMethods:
             - GET
@@ -1336,7 +1350,7 @@ Resources:
         - Key: StackName
           Value: !Ref AWS::StackName
     DependsOn:
-      - CloudFrontOAI
+      - CloudFrontOAC
       - MediaPackageChannel
 
 #################################
